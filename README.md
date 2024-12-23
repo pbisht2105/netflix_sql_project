@@ -100,6 +100,7 @@ ORDER BY "total_content" DESC
 LIMIT 5;
 
 -- OR --
+
 SELECT 
     UNNEST(STRING_TO_ARRAY(country, ',')) AS new_country, 
     COUNT(show_id) AS "total_content"
@@ -132,6 +133,7 @@ ORDER BY CAST(LEFT(duration, POSITION(' ' IN duration) - 1) AS INTEGER) DESC
 LIMIT 1;
 
 -- OR --
+
 SELECT *, CAST(LEFT(duration, POSITION(' ' IN duration) - 1) AS INTEGER) AS int_duration 
 FROM netflix
 WHERE 
@@ -156,7 +158,7 @@ SELECT *
 FROM netflix
 WHERE CAST(date_added AS DATE) >= CURRENT_DATE - INTERVAL '5 years';
 
--- OR
+-- OR --
 
 SELECT *
 FROM netflix
