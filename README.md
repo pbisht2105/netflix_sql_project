@@ -44,7 +44,7 @@ CREATE TABLE Netflix (
 ```sql
 SELECT 
 	show_type,
-  count(*) "Number of Movies vs TV Shows" 
+	count(*) "Number of Movies vs TV Shows" 
 FROM netflix
 GROUP BY show_type;
 ```
