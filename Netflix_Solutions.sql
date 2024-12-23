@@ -37,10 +37,15 @@ GROUP BY show_type;
 -- 2. Find the most common rating for movies and TV shows
 
 SELECT 
-	show_type, rating, rating_count,ranking
+	show_type,
+	rating,
+	rating_count,
+	ranking
 FROM (
 	SELECT
-		show_type, rating, count(*) "rating_count", RANK() OVER(PARTITION BY show_type ORDER BY count(*) DESC) as RANKING
+		show_type,
+		rating, count(*) "rating_count",
+		RANK() OVER(PARTITION BY show_type ORDER BY count(*) DESC) as RANKING
 	FROM netflix
 	GROUP BY show_type, rating) as temp_table
 WHERE 
@@ -79,27 +84,27 @@ LIMIT 5;
 
 -- 5. Identify the longest movie
 
-SELECT DISTINCT duration FROM netflix;
+SELECT *
+FROM netflix
+ORDER BY CAST(LEFT(duration, POSITION(' ' IN duration) - 1) AS INTEGER) DESC
+LIMIT 1;
+
+-- OR -- 
+
+SELECT *,CAST(LEFT(duration, POSITION(' ' IN duration) - 1) AS INTEGER) int_duration 
+FROM netflix
+WHERE 
+	show_type='Movie'
+ORDER BY int_duration DESC
+LIMIT 1;
 
 /*
 IF YOUR VALUES ARE OF INTEGER TYPE
 	SELECT *
 	FROM netflix
 	WHERE
-		show_type='Movie' AND duration=(SELECT MAX(duration) from netflix);
-*/
-
-SELECT *
-FROM netflix
-ORDER BY CAST(LEFT(duration, POSITION(' ' IN duration) - 1) AS INTEGER) DESC
-LIMIT 1;
-
-/*
-	SELECT *,CAST(LEFT(duration, POSITION(' ' IN duration) - 1) AS INTEGER) int_duration 
-	FROM netflix
-	WHERE 
-		show_type='Movie'
-	ORDER BY int_duration DESC
+		show_type='Movie' AND duration=(SELECT MAX(duration) from netflix)
+	ORDER BY duration DESC
 	LIMIT 1;
 */
 
@@ -149,10 +154,18 @@ ORDER BY count(show_type) DESC;
 /* 10.Find each year and the average numbers of content release in India on netflix
 return top 5 year with highest avg content release!*/
 
-SELECT CAST(date_added as DATE),*
-FROM netflix
-WHERE country ILIKE '%India%';
+WITH date_format_table AS
+	(
+	SELECT CAST(date_added AS DATE) "DATE",*
+	FROM netflix
+	)
+Select EXTRACT(YEAR FROM "DATE") AS "Year", COUNT(*), ROUND(COUNT(*)::numeric/(SELECT count(*) FROM netflix WHERE country ILIKE '%India%')*100 ,0) as avg_release_per_year
+FROM date_format_table
+WHERE country ILIKE '%India%'
+GROUP BY 1;
+;
 
+--OR --
 
 SELECT 
 	EXTRACT(YEAR FROM TO_DATE(date_added,'Month DD, YYYY')),
@@ -218,4 +231,17 @@ SELECT "Content_Categorization", count(*) as "Count"
 FROM new_table
 GROUP BY "Content_Categorization";
 
+-- OR --
 
+SELECT 
+    category,
+    COUNT(*) AS content_count
+FROM (
+    SELECT 
+        CASE 
+            WHEN descriptions ILIKE '% kill%' OR descriptions ILIKE '% violen%' THEN 'Bad Contet'
+            ELSE 'Good Content'
+        END AS category
+    FROM netflix
+) AS categorized_content
+GROUP BY category;
