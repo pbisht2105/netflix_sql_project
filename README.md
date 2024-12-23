@@ -98,16 +98,6 @@ FROM netflix
 GROUP BY new_country
 ORDER BY "total_content" DESC
 LIMIT 5;
-
--- OR --
-
-SELECT 
-    UNNEST(STRING_TO_ARRAY(country, ',')) AS new_country, 
-    COUNT(show_id) AS "total_content"
-FROM netflix
-GROUP BY new_country
-ORDER BY "total_content" DESC
-LIMIT 5;
 ```
 ```sql
 -- IF YOUR COLUMNS DON'T HAVE MULTIPLE COUNTRY IN ONE CELL
