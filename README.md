@@ -17,6 +17,18 @@ The data for this project is sourced from the Kaggle dataset:
 
 - **Dataset Link:** [Movies Dataset](https://www.kaggle.com/datasets/shivamb/netflix-shows?resource=download)
 
+## Data Preprocessing and Cleaning
+
+Before importing the data from the CSV file into the SQL database, a data cleaning process was performed to ensure the dataset was in good shape for analysis. After reviewing the data, the following cleaning steps were applied:
+
+- **Duplicates**: Check for any duplicate rows or entries within data.
+- **Handled Missing Values**: Missing or null values were either removed or filled with default values where necessary.
+- **Corrected Data Formats**: The format of columns was standardized, ensuring consistent data types (e.g., date formats, numerical values).
+- **Addressed Inconsistent Entries**: Inconsistent or incorrectly formatted data (such as extra spaces, special characters, or misspellings) were corrected.
+- **Ensured Data Integrity**: Validity checks were performed to ensure that all the data makes sense and aligns with the intended structure of the database.
+
+These steps helped clean the data and make it suitable for a smooth and accurate import into the SQL database.
+
 ## Schema
 
 ```sql
