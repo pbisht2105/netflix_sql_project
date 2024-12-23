@@ -258,26 +258,16 @@ GROUP BY category;
 
 ## Findings and Conclusion
 
-- **Content Distribution:** The dataset contains a diverse range of movies and TV shows with varying ratings and genres.
-- **Common Ratings:** Insights into the most common ratings provide an understanding of the content's target audience.
-- **Geographical Insights:** The top countries and the average content releases by India highlight regional content distribution.
-- **Content Categorization:** Categorizing content based on specific keywords helps in understanding the nature of content available on Netflix.
+- **Content Distribution:** The dataset includes a wide variety of movies and TV shows with different ratings and genres.
+- **Common Ratings:** Analyzing the most frequent ratings helps us understand the intended audience for the content.
+- **Geographical Insights:** The top countries and the average number of content releases from India provide a clearer picture of regional content distribution.
+- **Content Categorization:** Organizing the content using specific keywords gives us a better understanding of the types of content available on Netflix.
+
 
 This analysis provides a comprehensive view of Netflix's content and can help inform content strategy and decision-making.
 
+## Author
 
+This project was created and maintained by [Pankaj Singh Bisht](https://github.com/pbisht2105).
 
-## Author - Zero Analyst
-
-This project is part of my portfolio, showcasing the SQL skills essential for data analyst roles. If you have any questions, feedback, or would like to collaborate, feel free to get in touch!
-
-### Stay Updated and Join the Community
-
-For more content on SQL, data analysis, and other data-related topics, make sure to follow me on social media and join our community:
-
-- **YouTube**: [Subscribe to my channel for tutorials and insights](https://www.youtube.com/@zero_analyst)
-- **Instagram**: [Follow me for daily tips and updates](https://www.instagram.com/zero_analyst/)
-- **LinkedIn**: [Connect with me professionally](https://www.linkedin.com/in/najirr)
-- **Discord**: [Join our community to learn and grow together](https://discord.gg/36h5f2Z5PK)
-
-Thank you for your support, and I look forward to connecting with you!
+You can contact me at: [pbisht2105@gmail.com](mailto:pbisht2105@gmail.com).
