@@ -23,7 +23,7 @@ Before importing the data from the CSV file into the SQL database, a data cleani
 
 - **Duplicates**: Check for any duplicate rows or entries within data.
 - **Handled Missing Values**: Missing or null values were either removed or filled with default values where necessary.
-- **Corrected Data Formats**: The format of columns was standardized, ensuring consistent data types (e.g., date formats, numerical values).
+- **Corrected Data Formats**: The format of columns was standardized, ensuring consistent data types (e.g. numerical values in release_year).
 - **Addressed Inconsistent Entries**: Inconsistent or incorrectly formatted data (such as extra spaces, special characters, or misspellings) were corrected.
 - **Ensured Data Integrity**: Validity checks were performed to ensure that all the data makes sense and aligns with the intended structure of the database.
 
