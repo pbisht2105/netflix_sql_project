@@ -36,13 +36,6 @@ CREATE TABLE Netflix (
     listed_in VARCHAR(150),
     descriptions VARCHAR(250)
 ```
-SELECT * FROM netflix;
-
-SELECT 
-    COUNT(*) AS total_rows 
-FROM netflix;
-
-SELECT DISTINCT show_type FROM netflix;
 
 ## Business Problems and Solutions
 
@@ -105,7 +98,8 @@ FROM netflix
 GROUP BY new_country
 ORDER BY "total_content" DESC
 LIMIT 5;
-```
+
+-- OR --
 SELECT 
     UNNEST(STRING_TO_ARRAY(country, ',')) AS new_country, 
     COUNT(show_id) AS "total_content"
@@ -113,7 +107,7 @@ FROM netflix
 GROUP BY new_country
 ORDER BY "total_content" DESC
 LIMIT 5;
-
+```
 ```sql
 -- IF YOUR COLUMNS DON'T HAVE MULTIPLE COUNTRY IN ONE CELL
 
@@ -132,26 +126,25 @@ LIMIT 5;
 ### 5. Identify the Longest Movie
 
 ```sql
--- IF YOUR VALUES ARE OF INTEGER TYPE
-SELECT *
-FROM netflix
-WHERE
-    show_type = 'Movie' AND duration = (SELECT MAX(duration) FROM netflix);
-```
-
-```sql
 SELECT *
 FROM netflix
 ORDER BY CAST(LEFT(duration, POSITION(' ' IN duration) - 1) AS INTEGER) DESC
 LIMIT 1;
-```
-```sql
+
+-- OR --
 SELECT *, CAST(LEFT(duration, POSITION(' ' IN duration) - 1) AS INTEGER) AS int_duration 
 FROM netflix
 WHERE 
     show_type = 'Movie'
 ORDER BY int_duration DESC
 LIMIT 1;
+```
+```sql
+-- IF YOUR VALUES ARE OF INTEGER TYPE
+SELECT *
+FROM netflix
+WHERE
+    show_type = 'Movie' AND duration = (SELECT MAX(duration) FROM netflix);
 ```
 
 **Objective:** Find the movie with the longest duration.
